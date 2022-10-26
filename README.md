@@ -1,4 +1,13 @@
 # Client-server-application-TCP-and-UDP-for-message-control
 - C++ client-server app that implements TCP and UDP functionalities
 - 3 entities : server, udp client, tcp client;
-- 
+- The server has both udp and tcp sockets open and waits for messages;
+- Clients can subscribe to different topics, from which they will receive messages;
+- If the topic received in the message, doesn't exist in the subscriber list trash it;
+- Only If client subscribes to unknown topic, add new topic to list;
+- Store and forward implementation (if the client is disconnected and the server has messages from his subscribed topics, store them until he reconnects);
+- It's not possible to have 2 clients with the same id;
+- For a better efficiency in searching for certain entries there are a lot of unordered_maps;
+- When the TCP client bind to the server he receives a connection status message;
+- When the server closes, all clients are closed;
+- When a client is closed it's not removed from any list, only when the client unsubscribes does it get removed;
